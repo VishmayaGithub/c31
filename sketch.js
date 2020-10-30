@@ -6,7 +6,7 @@ const Constraint = Matter.Constraint;
 var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
-var bird, slingshot;
+var bird, slingshot,gameState = "ONSLING";
 
 
 function preload() {
@@ -69,16 +69,20 @@ function draw(){
 }
 
 function mouseDragged(){
+    if(gameState !== "LAUNCHED"){
     Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "LAUNCHED"
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+        //bird.body.position.x = 200
+        //bird.body.position.y = 50
     }
 }
